@@ -1,16 +1,34 @@
-# Microsoft Malware Prediction
-This competition was to get the best prediction of which machines are most vulnerable to malware attacks.
+# ICR - Identifying Age-Related Conditions
+A submission to a [Kaggle competition](https://www.kaggle.com/competitions/icr-identify-age-related-conditions) sponsored by InVitro Cell Research.
 
-My submission is based on the scikit-learn library. It uses random decision forests to learn on the training data and then, given the test data, predicts how likely a machine is to be infected.
+Given data with anonymous characteristics, predict whether a patient has at least one of three conditions. The objective is to submit predictions, minimizing a logarithmic loss function.
 
-First off, I cleaned the datatypes, and truncated the dataframe to reduce computing cost. The data was quite clean from the start, so no further cleaning was necessary.
+In this notebook, my objective was to make a thorough study of the data and to find a predictive model that works best.
 
-Then I split the given data into training and validation. I trained the random forest on the training data, and checked how good is the prediction using the validation data. The error function I used for this is the area under the ROC curve of the model from the scikit-learn library.
-
-Finally, I trained the model on both the training and validation sets and fit it to Kaggle's secret validation set, submitting the data to the competition.
-
-
-Overall, the method I used was very simple and quick, however the accuracy of the predictions suffered as a result. 
-Other competitors used a gradient boosting technique instead of a random forest, which is a better fit for this challenge. They also used a weighted feature importance which helped the model learn more accurately. 
-
-While the concepts of gradient boosting are more complex, it was a measurably better performer for the task.
+### Overview of the notebook
+#### Dataset Exploration
+  * Viewing a sample of the data and the data types
+  * Checking for missing and anomalous values
+  * Plotting the numerical features 
+  * Studying the linear correlation of each feature to the target
+#### Data Transformation
+  * Cleaning the data by filling missing values and encoding categorical variables
+  * Identifying possible ways of feature engineering such as log-transforming and eliminating potentially confusing features
+  * Implementing the log-transform and using it on the data
+  * Selecting a sampling method to split the data into training and validation sets
+#### Model Selection
+  * Listing models that are most appropriate to the dataset: Support Vector Machines, Random Forest and Gradient Boosting
+  * Making a baseline random forest model 
+  * Tuning the random forest
+  * Making a Gradient Boosting Machine
+  * Making a SVM model 
+  * Making a simple Neural Network
+  * Comparing all the scores, to select the best model (it was gradient boosting)
+#### Improving the Model
+  * Using an automatic optimizer to get the best parameters for the model
+  * Saving the best performing model
+#### Predicting on the test data
+  * Transforming the test data in the same manner as the training data
+  * Using the best model to predict the target
+#### Submitting the results
+  * Making a `.csv` file with the required format
